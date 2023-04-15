@@ -11,7 +11,8 @@ JAVAC=/usr/bin/javac
 
 classes: BinaryTreeNode.class BinaryTree.class \
          BTQueueNode.class BTQueue.class \
-         AVLTree.class AVLTreeTest.class
+         AVLTree.class AVLTreeTest.class \
+		 AssignmentBST.class
 
 default: $(CLASSES)
 
