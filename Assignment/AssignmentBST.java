@@ -17,13 +17,26 @@ public class AssignmentBST {
 
                 break;
             case "2": // list all accounts
-                
+
                 break;
             case "3": // create an account
                 String accName = "";
                 String accDescription = "";
 
+                // #TODO Check if name is unique
                 User newAcc = new User(accName, accDescription);
+                while (Users.contains(newAcc) || (accName.equals(""))) {
+                    System.out.print("Provide an unique account name: ");
+                    accName = in.nextLine();
+                    if (Users.contains(newAcc)) {
+                        System.out.println("This account name is already taken. Please choose a different name.");
+                    }
+                    // #DEBUG System.out.println("AccName is '" + accName + "'");
+                }
+
+                System.out.print("Provide a description for your account: ");
+                accDescription = in.nextLine();
+
                 Users.add(newAcc);
                 break;
             case "4": // delete an account
@@ -36,7 +49,7 @@ public class AssignmentBST {
 
                 break;
             case "7": // load a file of actions from disk and process this
-                
+
                 break;
             case "8": // quit
 

@@ -39,18 +39,18 @@ public class User implements Comparable<User> {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (description == null) {
-            if (other.description != null)
-                return false;
-        } else if (!description.equals(other.description))
-            return false;
+        //if (description == null) {
+        //    if (other.description != null)
+        //        return false;
+        //} else if (!description.equals(other.description))
+        //    return false;
         return true;
     }
 
     @Override
-    public int compareTo(User o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    public int compareTo(User iUser) {
+        return this.name.compareTo(iUser.name);
+        // compares object based on username
     }
 
 }
