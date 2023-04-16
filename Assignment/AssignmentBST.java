@@ -12,10 +12,11 @@ public class AssignmentBST {
         boolean active = true;
 
         while (active) {
-            dialog1();
+            dialogMenu();
             String s = in.nextLine();
             switch (s) {
                 case "1": // find the profile description for a given account
+                    System.out.print(System.lineSeparator());
                     System.out.print("Provide the account name: ");
                     String findAccName = in.nextLine();
                     User userToFindDescription = new User(findAccName);
@@ -26,9 +27,23 @@ public class AssignmentBST {
                     } else {
                         System.out.println("Specified user does not exist.");
                     }
+                    System.out.print(System.lineSeparator());
                     break;
                 case "2": // list all accounts
+                    dialogOrder();
+                    String order = in.nextLine();
+                    System.out.print(System.lineSeparator());
 
+                    switch (order) {
+                        case "1":
+                            Users.inOrder();
+                            System.lineSeparator();
+                            break;
+
+                        default:
+                            break;
+                    }
+                    System.lineSeparator();
                     break;
                 case "3": // create an account
                     String accName = "";
@@ -95,7 +110,7 @@ public class AssignmentBST {
         in.close();
     }
 
-    private static void dialog1() {
+    private static void dialogMenu() {
         System.out.println("Choose an action from the menu" + System.lineSeparator()
                 + "1. Find the profile description for a given account" + System.lineSeparator()
                 + "2. List all accounts" + System.lineSeparator() + "3. Create an account" + System.lineSeparator()
@@ -103,5 +118,11 @@ public class AssignmentBST {
                 + System.lineSeparator() + "6. Add a new post for a single account" + System.lineSeparator()
                 + "7. Load a file of actions from disk and process this" + System.lineSeparator() + "8. Quit");
         System.out.print("Enter your choice: ");
+    }
+
+    private static void dialogOrder() {
+        System.out.print(System.lineSeparator() + "Traverse:" + System.lineSeparator() + "1: In-order"
+                + System.lineSeparator() + "2: Pre-order" + System.lineSeparator() + "3: Post-order"
+                + System.lineSeparator() + "4: Level-order" + System.lineSeparator() + "Enter your choice: ");
     }
 }

@@ -44,11 +44,11 @@ public class User implements Comparable<User> {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        //if (description == null) {
-        //    if (other.description != null)
-        //        return false;
-        //} else if (!description.equals(other.description))
-        //    return false;
+        // if (description == null) {
+        // if (other.description != null)
+        // return false;
+        // } else if (!description.equals(other.description))
+        // return false;
         return true;
     }
 
@@ -56,6 +56,11 @@ public class User implements Comparable<User> {
     public int compareTo(User iUser) {
         return this.name.compareTo(iUser.name);
         // compares object based on username
+    }
+
+    @Override
+    public String toString() {
+        return ("Name: '" + name + "' Description: '" + description + "'" + System.lineSeparator());
     }
 
 }
