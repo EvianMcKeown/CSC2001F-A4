@@ -14,7 +14,7 @@ public class AssignmentBST {
 
                 break;
             case "2": // list all accounts
-                AVLTree<User> bs = new AVLTree<User>();
+                AVLTree<User> bs ;
                 break;
             case "3": // create an account
 
