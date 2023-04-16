@@ -3,6 +3,15 @@ package Assignment;
 public class User implements Comparable<User> {
     private String name;
     private String description;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public User(String name, String description) {
         this.name = name;

@@ -2,7 +2,6 @@ package Assignment;
 
 import java.util.Scanner;
 import java.util.TreeSet;
-import Assignment.AVLTree;
 
 public class AssignmentBST {
     public static void main(String args[]) {
@@ -23,7 +22,7 @@ public class AssignmentBST {
                 String accName = "";
                 String accDescription = "";
 
-                // #TODO Check if name is unique
+                // #Check if name is unique
                 User newAcc = new User(accName, accDescription);
                 while (Users.contains(newAcc) || (accName.equals(""))) {
                     System.out.print("Provide an unique account name: ");
@@ -38,9 +37,10 @@ public class AssignmentBST {
                 accDescription = in.nextLine();
 
                 Users.add(newAcc);
+                // #DEBUG System.out.println(Users.contains(newAcc));
                 break;
             case "4": // delete an account
-
+                    System.out.print("What account would you like to delete");
                 break;
             case "5": // display all posts for a single account
 
