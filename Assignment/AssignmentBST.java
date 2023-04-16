@@ -9,7 +9,8 @@ public class AssignmentBST {
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
 
-        TreeSet<User> Users = new TreeSet<User>();
+        //TreeSet<User> Users = new TreeSet<User>();
+        AVLTree<User> Users = new AVLTree<User>();
 
         switch (s) {
             case "1": // find the profile description for a given account
@@ -24,23 +25,32 @@ public class AssignmentBST {
 
                 // #Check if name is unique
                 User newAcc = new User(accName, accDescription);
-                while (Users.contains(newAcc) || (accName.equals(""))) {
-                    System.out.print("Provide an unique account name: ");
+                boolean accCreated = false;
+                while (Users.find(newAcc) != null || (accName.equals(""))) {
+                    System.out.print("Provide a unique account name: ");
                     accName = in.nextLine();
-                    if (Users.contains(newAcc)) {
+                    newAcc.setName(accName);
+                    if (Users.find(newAcc) != null) {
                         System.out.println("This account name is already taken. Please choose a different name.");
+                    } else if (!accName.equals("")) {
+                        accCreated = true;
                     }
                     // #DEBUG System.out.println("AccName is '" + accName + "'");
                 }
 
                 System.out.print("Provide a description for your account: ");
                 accDescription = in.nextLine();
+                newAcc.setDescription(accDescription);
 
-                Users.add(newAcc);
-                // #DEBUG System.out.println(Users.contains(newAcc));
+                Users.insert(newAcc);
+                // #DEBUG System.out.println(Users.find(newAcc) != null);
+                if (accCreated) {
+                    System.out.println("User '" + accName + "' has been created.");
+                }
+                
                 break;
             case "4": // delete an account
-                    System.out.print("What account would you like to delete");
+                    System.out.print("Enter the name of the account you would like to delete: ");
                 break;
             case "5": // display all posts for a single account
 

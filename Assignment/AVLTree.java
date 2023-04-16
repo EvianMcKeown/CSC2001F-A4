@@ -4,7 +4,7 @@ package Assignment;
 // Hussein Suleman
 // reference: kukuruku.co/post/avl-trees/
 
-public class AVLTree<dataType extends Comparable<? super dataType>> extends BinaryTree<dataType>
+public class AVLTree<dataType extends Comparable<dataType>> extends BinaryTree<dataType>
 {
    public int height ( BinaryTreeNode<dataType> node )
    {
