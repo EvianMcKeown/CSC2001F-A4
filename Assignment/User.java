@@ -3,6 +3,15 @@ package Assignment;
 public class User implements Comparable<User> {
     private String name;
     private String description;
+    private AVLTree<Post> posts = new AVLTree<Post>();
+
+    public AVLTree<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(AVLTree<Post> posts) {
+        this.posts = posts;
+    }
 
     public User(String name, String description) {
         this.name = name;
