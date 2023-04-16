@@ -1,6 +1,6 @@
 package Assignment;
 
-public class User <T extends Comparable<?>> {
+public class User implements Comparable<User> {
     private String name;
     private String description;
 
@@ -45,6 +45,12 @@ public class User <T extends Comparable<?>> {
         } else if (!description.equals(other.description))
             return false;
         return true;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
 
 }

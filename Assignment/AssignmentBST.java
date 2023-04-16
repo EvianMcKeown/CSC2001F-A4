@@ -1,6 +1,7 @@
 package Assignment;
 
 import java.util.Scanner;
+import java.util.TreeSet;
 import Assignment.AVLTree;
 
 public class AssignmentBST {
@@ -9,15 +10,21 @@ public class AssignmentBST {
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
 
+        TreeSet<User> Users = new TreeSet<User>();
+
         switch (s) {
             case "1": // find the profile description for a given account
 
                 break;
             case "2": // list all accounts
-                AVLTree<User> bs ;
+                
                 break;
             case "3": // create an account
+                String accName = "";
+                String accDescription = "";
 
+                User newAcc = new User(accName, accDescription);
+                Users.add(newAcc);
                 break;
             case "4": // delete an account
 
@@ -29,7 +36,7 @@ public class AssignmentBST {
 
                 break;
             case "7": // load a file of actions from disk and process this
-
+                
                 break;
             case "8": // quit
 
