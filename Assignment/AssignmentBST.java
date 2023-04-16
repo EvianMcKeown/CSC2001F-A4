@@ -7,7 +7,6 @@ public class AssignmentBST {
         // TreeSet<User> Users = new TreeSet<User>();
         AVLTree<User> Users = new AVLTree<User>();
 
-        
         Scanner in = new Scanner(System.in);
         // #DONE Make Decision Loop
         boolean active = true;
@@ -17,7 +16,16 @@ public class AssignmentBST {
             String s = in.nextLine();
             switch (s) {
                 case "1": // find the profile description for a given account
+                    System.out.print("Provide the account name: ");
+                    String findAccName = in.nextLine();
+                    User userToFindDescription = new User(findAccName);
 
+                    if (Users.find(userToFindDescription) != null) {
+                        System.out.println("User '" + findAccName + "' has description '"
+                                + Users.find(userToFindDescription).data.getDescription() + "'");
+                    } else {
+                        System.out.println("Specified user does not exist.");
+                    }
                     break;
                 case "2": // list all accounts
 
@@ -29,7 +37,7 @@ public class AssignmentBST {
                     // #Check if name is unique
                     User newAcc = new User(accName, accDescription);
                     boolean accCreated = false;
-                    while (Users.find(newAcc).data != null || (accName.equals(""))) {
+                    while (Users.find(newAcc) != null || (accName.equals(""))) {
                         System.out.print("Provide a unique account name: ");
                         accName = in.nextLine();
                         newAcc.setName(accName);
@@ -52,7 +60,7 @@ public class AssignmentBST {
                     }
                     break;
                 case "4": // delete an account
-                    System.out.print("Enter the name of the account you would like to delete: ");
+                    System.out.print("Provide the name of the account you would like to delete: ");
                     String delAccName = in.nextLine();
                     User userToDelete = new User(delAccName);
 
