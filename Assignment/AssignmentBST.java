@@ -1,7 +1,6 @@
 package Assignment;
 
 import java.util.Scanner;
-import java.util.TreeSet;
 
 public class AssignmentBST {
     public static void main(String args[]) {
@@ -26,7 +25,7 @@ public class AssignmentBST {
                 // #Check if name is unique
                 User newAcc = new User(accName, accDescription);
                 boolean accCreated = false;
-                while (Users.find(newAcc) != null || (accName.equals(""))) {
+                while (Users.find(newAcc).data != null || (accName.equals(""))) {
                     System.out.print("Provide a unique account name: ");
                     accName = in.nextLine();
                     newAcc.setName(accName);
@@ -51,6 +50,12 @@ public class AssignmentBST {
                 break;
             case "4": // delete an account
                     System.out.print("Enter the name of the account you would like to delete: ");
+                    String delAccName = in.nextLine();
+                    User userToDelete = new User(delAccName);
+                    if (Users.find(userToDelete) != null) {
+                        Users.delete(Users.find(userToDelete).getData());
+                        // Gets User and passes it to delete method
+                    }
                 break;
             case "5": // display all posts for a single account
 

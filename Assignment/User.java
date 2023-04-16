@@ -9,6 +9,11 @@ public class User implements Comparable<User> {
         this.description = description;
     }
 
+    public User(String name) {
+        this.name = name;
+        this.description = "";
+    }
+
     public String getName() {
         return name;
     }
