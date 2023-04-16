@@ -64,7 +64,7 @@ public class AssignmentBST {
                     String delAccName = in.nextLine();
                     User userToDelete = new User(delAccName);
 
-                    // #TODO Test Account Deletion
+                    // #DONE Test Account Deletion
                     if (Users.find(userToDelete) != null) {
                         // Gets User and passes it to delete method
                         Users.delete(Users.find(userToDelete).getData());
