@@ -69,7 +69,7 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return ("Name: '" + name + "' Description: '" + description + "'" + System.lineSeparator());
+        return ("Name: '" + name + "' Description: '" + description + "'");
     }
 
 }

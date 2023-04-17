@@ -12,6 +12,7 @@ public class AssignmentBST {
         boolean active = true;
 
         while (active) {
+
             dialogMenu();
             String s = in.nextLine();
             switch (s) {
@@ -37,13 +38,13 @@ public class AssignmentBST {
                     switch (order) {
                         case "1":
                             Users.inOrder();
-                            System.lineSeparator();
+                            //System.out.print(System.lineSeparator());
                             break;
 
                         default:
                             break;
                     }
-                    System.lineSeparator();
+                    System.out.print(System.lineSeparator());
                     break;
                 case "3": // create an account
                     String accName = "";
@@ -53,7 +54,7 @@ public class AssignmentBST {
                     User newAcc = new User(accName, accDescription);
                     boolean accCreated = false;
                     while (Users.find(newAcc) != null || (accName.equals(""))) {
-                        System.out.print("Provide a unique account name: ");
+                        System.out.print(System.lineSeparator() + "Provide a unique account name: ");
                         accName = in.nextLine();
                         newAcc.setName(accName);
                         if (Users.find(newAcc) != null) {
@@ -73,6 +74,7 @@ public class AssignmentBST {
                     if (accCreated) {
                         System.out.println("User '" + accName + "' has been created.");
                     }
+                    System.out.print(System.lineSeparator());
                     break;
                 case "4": // delete an account
                     System.out.print("Provide the name of the account you would like to delete: ");
