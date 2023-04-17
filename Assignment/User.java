@@ -9,8 +9,23 @@ public class User implements Comparable<User> {
         return posts;
     }
 
-    public void setPosts(AVLTree<Post> posts) {
-        this.posts = posts;
+    // public void setPosts(AVLTree<Post> posts) {
+    // this.posts = posts;
+    // }
+
+    public void addPost(Post iPost) {
+        this.posts.insert(iPost);
+    }
+
+    public boolean removePost(Post iPost) {
+        if (this.posts.find(iPost) != null) {
+            // true is returned when post is found and then deleted
+            this.posts.delete(this.posts.find(iPost).data);
+            return true;
+        } else {
+            // false is returned when post is not found (and thus not deleted)
+            return false;
+        }
     }
 
     public User(String name, String description) {
