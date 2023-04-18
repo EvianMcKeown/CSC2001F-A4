@@ -13,6 +13,11 @@ public class User implements Comparable<User> {
     // this.posts = posts;
     // }
 
+    public User(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public void addPost(Post iPost) {
         this.posts.insert(iPost);
     }
@@ -26,11 +31,6 @@ public class User implements Comparable<User> {
             // false is returned when post is not found (and thus not deleted)
             return false;
         }
-    }
-
-    public User(String name, String description) {
-        this.name = name;
-        this.description = description;
     }
 
     public User(String name) {
