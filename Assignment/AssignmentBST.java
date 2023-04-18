@@ -1,6 +1,8 @@
 package Assignment;
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class AssignmentBST {
     public static void main(String args[]) {
@@ -65,14 +67,19 @@ public class AssignmentBST {
                     /** Check if name is unique */
                     User newAcc = new User(accName, accDescription);
                     boolean accCreated = false;
-                    while (Users.find(newAcc) != null || (accName.equals(""))) {
+                    while (Users.find(newAcc) != null || (accName.equals("")) || !isValidName(accName)) {
                         System.out.print(System.lineSeparator() + "Provide a unique account name: ");
                         accName = in.nextLine();
-                        newAcc.setName(accName);
-                        if (Users.find(newAcc) != null) {
-                            System.out.println("This account name is already taken. Please choose a different name.");
-                        } else if (!accName.equals("")) {
-                            accCreated = true;
+                        if (!isValidName(accName)) {
+                            System.out.println("This account name is not valid. Please choose a different name.");
+                        } else {
+                            newAcc.setName(accName);
+                            if (Users.find(newAcc) != null) {
+                                System.out
+                                        .println("This account name is already taken. Please choose a different name.");
+                            } else if (!accName.equals("")) {
+                                accCreated = true;
+                            }
                         }
                         // #DEBUG System.out.println("AccName is '" + accName + "'");
                     }
@@ -150,8 +157,11 @@ public class AssignmentBST {
                         System.out.print("Provide the post name: ");
                         String postName = in.nextLine();
 
-                        if (!postName.equals("")) {
-                            /** If PostName is not empty, add post to post AVLtree */
+                        if (!postName.equals("") && isValidName(postName)) {
+                            /**
+                             * If PostName is not empty and has only legal characters, add post to post
+                             * AVLtree
+                             */
                             Integer postLikes = 0;
                             /** If like string cannot be parsed into int, default to 0 likes */
                             try {
@@ -169,6 +179,8 @@ public class AssignmentBST {
                                             + "' and " + postLikes + " likes has been added to '" + accountToAddPost
                                             + "'."
                                             + System.lineSeparator());
+                        } else if (!postName.equals("") && !isValidName(postName)) {
+                            System.out.println("Post name can not contain any spaces." + System.lineSeparator());
                         } else {
                             System.out.println("Post name is required." + System.lineSeparator());
                         }
@@ -177,7 +189,30 @@ public class AssignmentBST {
                     }
                     break;
                 case "7": // load a file of actions from disk and process this
+                    System.out.print(System.lineSeparator() + "Provide the filename: ");
+                    String fileName = in.nextLine();
+                    try {
+                        File inputFile = new File(fileName);
+                        Scanner fileReader = new Scanner(inputFile);
+                        while (fileReader.hasNextLine()) {
+                            String curLine = fileReader.nextLine();
+                            String[] curLineArr = curLine.split(" ");
+                            switch (curLineArr[0]) {
+                                case "Add":
+                                
+                                    break;
+                                case "Create":
 
+                                    break;
+                                // #TODO: Add delete and remove
+                                default:
+                                    break;
+                            }
+                        }
+                        fileReader.close();
+                    } catch (FileNotFoundException exception) {
+                        // TODO: handle exception
+                    }
                     break;
                 case "8": // quit
                     active = false;
@@ -206,5 +241,17 @@ public class AssignmentBST {
         System.out.print(System.lineSeparator() + "Traverse:" + System.lineSeparator() + "1: In-order"
                 + System.lineSeparator() + "2: Pre-order" + System.lineSeparator() + "3: Post-order"
                 + System.lineSeparator() + "4: Level-order" + System.lineSeparator() + "Enter your choice: ");
+    }
+
+    private static Boolean isValidName(String iName) {
+        char[] iChar = iName.toCharArray();
+
+        for (int i = 0; i < iChar.length; i++) {
+            Integer ascii = (int) iChar[i];
+            if ((ascii > 126) || (ascii < 33)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
