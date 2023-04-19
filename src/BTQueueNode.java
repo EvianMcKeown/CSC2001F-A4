@@ -1,4 +1,4 @@
-package Assignment;
+package src;
 // Hussein's Binary Tree
 // 26 March 2017
 // Hussein Suleman

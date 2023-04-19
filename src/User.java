@@ -1,4 +1,4 @@
-package Assignment;
+package src;
 
 /**
  * This class stores info relating to a user for AssignmentBST.
