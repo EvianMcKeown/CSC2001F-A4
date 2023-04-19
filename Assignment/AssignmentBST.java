@@ -105,7 +105,8 @@ public class AssignmentBST {
                         /* Gets User and passes it to delete method */
                         Users.delete(Users.find(userToDelete).getData());
 
-                        System.out.println("User '" + userToDelete.getName() + "' has been deleted.");
+                        System.out.println(
+                                "User '" + userToDelete.getName() + "' has been deleted." + System.lineSeparator());
                     } else {
                         System.out.println("Specified user does not exist.");
                     }
@@ -199,16 +200,63 @@ public class AssignmentBST {
                             String[] curLineArr = curLine.split(" ");
                             switch (curLineArr[0]) {
                                 case "Add":
-                                
+                                    try {
+                                        String tempUNpost = curLineArr[1];
+                                        String tempPostName = curLineArr[2];
+                                        Integer tempLikeCount = 0;
+                                        try {
+                                            tempLikeCount = Integer.parseInt(curLineArr[3]);
+                                        } catch (Exception e) {
+                                            /** like count not a number - defaults to 0 */
+                                        }
+                                        String tempPostDescrip = "";
+                                        for (int i = 4; i < curLineArr.length; i++) {
+                                            tempPostDescrip += curLineArr[i] + " ";
+                                        }
+                                        User tempUserPost = new User(tempUNpost);
+                                        BinaryTreeNode<User> tempUserNode = Users.find(tempUserPost);
+                                        if (tempUserNode != null) {
+                                            if (isValidName(tempUNpost) && !tempUNpost.equals("")) {
+                                                Post tempPost = new Post(tempPostName, tempLikeCount, tempPostDescrip);
+                                                Users.find(tempUserPost).data.addPost(tempPost);
+                                            } else {
+                                                /** Post name is not valid */
+                                                System.out.println("Post name '" + tempUNpost + "' is not valid.");
+                                            }
+                                        } else {
+                                            System.out.println("User '" + tempUNpost + "' does not exist.");
+                                        }
+                                    } catch (Exception e) {
+                                        /** not enough paramaters */
+                                        System.out.println("Warning: Post format is incorrect.");
+                                    }
                                     break;
                                 case "Create":
-
+                                    String tempUserName = curLineArr[1];
+                                    String tempUserDescrip = "";
+                                    for (int i = 2; i < curLineArr.length; i++) {
+                                        tempUserDescrip += curLineArr[i] + " ";
+                                    }
+                                    if ((!tempUserName.equals("")) && (isValidName(tempUserName))) {
+                                        User tempUserFile = new User(tempUserName, tempUserDescrip);
+                                        if (Users.find(tempUserFile) == null) {
+                                            Users.insert(tempUserFile);
+                                        } else {
+                                            /** reports if user already exists */
+                                            System.out.println("User '" + tempUserName + "' already exists."
+                                                    + System.lineSeparator());
+                                        }
+                                    } else {
+                                        /** reports if username is not valid */
+                                        System.out.println("'" + tempUserName + "' is not a valid user name.");
+                                    }
                                     break;
                                 // #TODO: Add delete and remove
                                 default:
                                     break;
                             }
                         }
+                        System.out.println("File loading complete." + System.lineSeparator());
                         fileReader.close();
                     } catch (FileNotFoundException exception) {
                         // TODO: handle exception
@@ -248,9 +296,14 @@ public class AssignmentBST {
 
         for (int i = 0; i < iChar.length; i++) {
             Integer ascii = (int) iChar[i];
-            if ((ascii > 126) || (ascii < 33)) {
+            if (ascii < 33) {
+                return false;
+            } else if ((ascii < 161) && (ascii > 126)) {
+                return false;
+            } else if (ascii == 173) {
                 return false;
             }
+            // return false;
         }
         return true;
     }
