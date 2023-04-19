@@ -6,7 +6,15 @@ import java.io.FileNotFoundException;
 
 public class AssignmentBST {
     public static void main(String args[]) {
-        // TreeSet<User> Users = new TreeSet<User>();
+        /**
+         * Main method, where core functionality is included.
+         * 
+         * Used 'TreeSet<User> Users = new TreeSet<User>();' initially
+         * But this did not allow comparing by the user name exclusively, so custom
+         * AVLtree implimentation was required.
+         * 
+         * @param args
+         */
         AVLTree<User> Users = new AVLTree<User>();
 
         Scanner in = new Scanner(System.in);
@@ -14,11 +22,12 @@ public class AssignmentBST {
         boolean active = true;
 
         while (active) {
-
+            /** prints main menu, then takes string input */
             dialogMenu();
             String s = in.nextLine();
             switch (s) {
-                case "1": // find the profile description for a given account
+                case "1":
+                    /** find the profile description for a given account */
                     System.out.print(System.lineSeparator());
                     System.out.print("Provide the account name: ");
                     String findAccName = in.nextLine();
@@ -211,7 +220,11 @@ public class AssignmentBST {
                                         }
                                         String tempPostDescrip = "";
                                         for (int i = 4; i < curLineArr.length; i++) {
-                                            tempPostDescrip += curLineArr[i] + " ";
+                                            if (i == curLineArr.length - 1) {
+                                                tempPostDescrip += curLineArr[i];
+                                            } else {
+                                                tempPostDescrip += curLineArr[i] + " ";
+                                            }
                                         }
                                         User tempUserPost = new User(tempUNpost);
                                         BinaryTreeNode<User> tempUserNode = Users.find(tempUserPost);
@@ -235,7 +248,11 @@ public class AssignmentBST {
                                     String tempUserName = curLineArr[1];
                                     String tempUserDescrip = "";
                                     for (int i = 2; i < curLineArr.length; i++) {
-                                        tempUserDescrip += curLineArr[i] + " ";
+                                        if (i == curLineArr.length - 1) {
+                                            tempUserDescrip += curLineArr[i];
+                                        } else {
+                                            tempUserDescrip += curLineArr[i] + " ";
+                                        }
                                     }
                                     if ((!tempUserName.equals("")) && (isValidName(tempUserName))) {
                                         User tempUserFile = new User(tempUserName, tempUserDescrip);
@@ -260,6 +277,8 @@ public class AssignmentBST {
                         fileReader.close();
                     } catch (FileNotFoundException exception) {
                         // TODO: handle exception
+                        System.out.println("File '" + fileName + "' not found." + System.lineSeparator()
+                                + "< Remember to include the file extension >" + System.lineSeparator());
                     }
                     break;
                 case "8": // quit
