@@ -4,17 +4,25 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Main class, AVLTree and File Handling are handled in public static main.
+ * 
+ * @author Evian McKeown
+ * @version 1.0
+ */
+
 public class AssignmentBST {
+
+    /**
+     * Main method, where core functionality is included.
+     * 
+     * Used 'TreeSet<User> Users = new TreeSet<User>();' initially
+     * But this did not allow comparing by the user name exclusively, so custom
+     * AVLtree implimentation was required.
+     * 
+     * @param args[] not in use
+     */
     public static void main(String args[]) {
-        /**
-         * Main method, where core functionality is included.
-         * 
-         * Used 'TreeSet<User> Users = new TreeSet<User>();' initially
-         * But this did not allow comparing by the user name exclusively, so custom
-         * AVLtree implimentation was required.
-         * 
-         * @param args
-         */
         AVLTree<User> Users = new AVLTree<User>();
 
         Scanner in = new Scanner(System.in);
@@ -294,6 +302,9 @@ public class AssignmentBST {
         in.close();
     }
 
+    /**
+     * Prints main menu dialog
+     */
     private static void dialogMenu() {
         System.out.println("Choose an action from the menu" + System.lineSeparator()
                 + "1. Find the profile description for a given account" + System.lineSeparator()
@@ -304,12 +315,21 @@ public class AssignmentBST {
         System.out.print("Enter your choice: ");
     }
 
+    /**
+     * Prints dialog for specifying order
+     */
     private static void dialogOrder() {
         System.out.print(System.lineSeparator() + "Traverse:" + System.lineSeparator() + "1: In-order"
                 + System.lineSeparator() + "2: Pre-order" + System.lineSeparator() + "3: Post-order"
                 + System.lineSeparator() + "4: Level-order" + System.lineSeparator() + "Enter your choice: ");
     }
 
+    /**
+     * Returns true if name has no illegal chars.
+     * 
+     * @param iName
+     * @return Boolean IsValidName
+     */
     private static Boolean isValidName(String iName) {
         char[] iChar = iName.toCharArray();
 
